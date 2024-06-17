@@ -17,20 +17,33 @@ class DbBuilder:
             """
             CREATE TABLE IF NOT EXISTS shifts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                entrance TIMESTAMP,
-                exit TIMESTAMP
+                entrance varchar(8),
+                exit varchar(8)
             )
         """
         )
 
-        # shift table default values
-        cursor.execute(
+        count = cursor.execute("SELECT COUNT(*) FROM shifts").fetchone()[0]
+        if count == 0:
+            # shift table default values
+            cursor.execute(
+                """
+                insert into shifts (entrance,exit) values ('00:00:00','08:00:00')
+                
             """
-             insert into shifts (entrance,exit) values ('2021-01-01 00:00:00','2021-01-01 08:00:00');
-             insert into shifts (entrance,exit) values ('2021-01-01 08:00:00','2021-01-01 17:00:00');
-             insert into shifts (entrance,exit) values ('2021-01-01 17:00:00','2021-01-01 00:00:00');
-        """
-        )
+            )
+            cursor.execute(
+                """
+                 insert into shifts (entrance,exit) values ('08:00:00','17:00:00')
+                
+            """
+            )
+            cursor.execute(
+                """
+                 insert into shifts (entrance,exit) values ('17:00:00','00:00:00')
+                
+            """
+            )
 
         # personel table
         cursor.execute(
@@ -40,7 +53,7 @@ class DbBuilder:
                 name VARCHAR(20),
                 surname VARCHAR(20),
                 mail VARCHAR(25),
-                password VARCHAR(15),
+                password VARCHAR(15)
             )
         """
         )

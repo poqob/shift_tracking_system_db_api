@@ -1,4 +1,4 @@
-from model.personel import Personel
+from personel import Personel
 import configparser
 from typing import List
 import sqlite3

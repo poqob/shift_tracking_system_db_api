@@ -1,14 +1,19 @@
 kullanıcı sisteme girdi -> kullanıcı ön veri tabanında mevcut (id,giriş saati, vardiya)
 
 
+shift encryptor 
 aksiyonlar tablosu:
 id:int, name:varchar(15)
 
 karekod tablosu:
 id:int,zaman:timestamp,code:varchar(10),aksiyon(giriş0-çıkış1-mola2...3.4.5..)
 
+
+
+
+shift db api
 vardiya tablosu:
-id, entrance_date:time_stamp, exit_date:time_stamp
+id, entrance_date:varchar(8), exit_date:varchar(8)
 
 kullanıcılar tablosu:
 id,name,surname,mail,password

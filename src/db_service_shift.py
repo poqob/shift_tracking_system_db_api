@@ -1,4 +1,4 @@
-from model.shift import Shift
+from shift import Shift
 import configparser
 from typing import List
 import sqlite3
@@ -64,7 +64,7 @@ class ShiftService:
         conn.close()
         shift_list = []
         for row in result:
-            shift = Shift(row[0], row[1], row[2])
+            shift = Shift(id=row[0], entrance_date=row[1], exit_date=row[2])
             shift_list.append(shift)
         return shift_list
 
@@ -79,5 +79,5 @@ class ShiftService:
         )
         result = cursor.fetchone()
         conn.close()
-        shift = Shift(result[0], result[1], result[2])
+        shift = Shift(id=result[0], entrance_date=result[1], exit_date=result[2])
         return shift

@@ -22,5 +22,14 @@ class Personel:
         password = json_data.get("password")
         return Personel(id_number, name, surname, mail, password)
 
+    def serialize(self):
+        return {
+            "id_number": self.id_number,
+            "name": self.name,
+            "surname": self.surname,
+            "mail": self.mail,
+            "password": self.password,
+        }
+
     def __str__(self):
         return f"Personel(id_number={self.id_number}, name={self.name}, surname={self.surname}, mail={self.mail}, password={self.password})"

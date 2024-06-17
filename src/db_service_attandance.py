@@ -1,10 +1,10 @@
-from model.attandance import Attandance
+from attandance import Attandance
 import configparser
 from typing import List
 import sqlite3
 
 
-class AttandanceService:
+class AttandanceDbService:
     config = configparser.ConfigParser()
     config.read("../config/config.ini")
     db_address = config["database"]["path"]
