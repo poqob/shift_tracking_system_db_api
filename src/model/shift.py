@@ -2,7 +2,7 @@
 
 
 class Shift:
-    def __init__(self, id: int, entrance_date: str, exit_date: str):
+    def __init__(self, id: int=None, entrance_date: str=None, exit_date: str=None):
         self.id = id
         self.entrance_date = entrance_date
         self.exit_date = exit_date

@@ -1,12 +1,12 @@
 from typing import List
-from personel import Personel
-from attandance import Attandance
-from log import Log
-from shift import Shift
-from db_service_attandance import AttandanceDbService
-from db_service_log import LogService
-from db_service_shift import ShiftService
-from db_service_personel import PersonelService
+from src.model.personel import Personel
+from src.model.attandance import Attandance
+from src.model.log import Log
+from src.model.shift import Shift
+from src.db_service.db_service_attandance import AttandanceDbService
+from src.db_service.db_service_log import LogService
+from src.db_service.db_service_shift import ShiftService
+from src.db_service.db_service_personel import PersonelService
 
 
 class DbService:

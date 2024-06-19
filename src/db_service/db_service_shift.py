@@ -1,89 +1,83 @@
-from personel import Personel
+from src.model.shift import Shift
 import configparser
 from typing import List
 import sqlite3
 
 
-class PersonelService:
+class ShiftService:
     config = configparser.ConfigParser()
     config.read("../config/config.ini")
     db_address = config["database"]["path"]
     name = config["database"]["name"]
 
-    def add(self, personel: Personel):
+    def add(self, shift: Shift):
         conn = sqlite3.connect(self.db_address)
         cursor = conn.cursor()
         cursor.execute(
             """
-            INSERT INTO personels (name, surname, mail, password)
-            VALUES (?, ?, ?, ?)
+            INSERT INTO shifts (entrance, exit)
+            VALUES (?, ?)
             """,
-            (personel.name, personel.surname, personel.mail, personel.password),
+            (shift.entrance, shift.exit),
         )
         conn.commit()
         conn.close()
 
-    def delete(self, personel_id: int):
+    def delete(self, shift_id: int):
         conn = sqlite3.connect(self.db_address)
         cursor = conn.cursor()
         cursor.execute(
             """
-            DELETE FROM personels WHERE id = ?
+            DELETE FROM shifts WHERE id = ?
             """,
-            (personel_id,),
+            (shift_id,),
         )
         conn.commit()
         conn.close()
 
-    def update(self, personel: Personel):
+    def update(self, shift: Shift):
         conn = sqlite3.connect(self.db_address)
         cursor = conn.cursor()
         cursor.execute(
             """
-            UPDATE personels SET name = ?, surname = ?, mail = ?, password = ?
+            UPDATE shifts SET entrance = ?, exit = ?
             WHERE id = ?
             """,
             (
-                personel.name,
-                personel.surname,
-                personel.mail,
-                personel.password,
-                personel.id,
+                shift.entrance,
+                shift.exit,
+                shift.id,
             ),
         )
         conn.commit()
         conn.close()
 
-    def get_all(self) -> List[Personel]:
+    def get_all(self) -> List[Shift]:
         conn = sqlite3.connect(self.db_address)
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT * FROM personels
+            SELECT * FROM shifts
             """
         )
         result = cursor.fetchall()
         conn.close()
-        personels = []
+        shift_list = []
         for row in result:
-            personel = Personel(
-                name=row[1], surname=row[2], mail=row[3], password=row[4]
-            )
-            personels.append(personel)
-        return personels
+            shift = Shift(id=row[0], entrance_date=row[1], exit_date=row[2])
+            shift_list.append(shift)
+        return shift_list
 
-    def get_by_id(self, personel_id: int) -> Personel:
+    def get_by_id(self, shift_id: int) -> Shift:
         conn = sqlite3.connect(self.db_address)
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT * FROM personels WHERE id = ?
+            SELECT * FROM shifts WHERE id = ?
             """,
-            (personel_id,),
+            (shift_id,),
         )
         result = cursor.fetchone()
         conn.close()
-
-        return Personel(
-            name=result[1], surname=result[2], mail=result[3], password=result[4]
-        )
+        shift = Shift(id=result[0], entrance_date=result[1], exit_date=result[2])
+        return shift

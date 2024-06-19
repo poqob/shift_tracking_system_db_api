@@ -1,4 +1,4 @@
-from log import Log
+from src.model.log import Log
 import configparser
 from typing import List
 import sqlite3

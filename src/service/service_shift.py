@@ -1,6 +1,6 @@
-from flask import Flask, request, g, jsonify
-from db_service import DbService
-from shift import Shift
+from flask import Flask, request, jsonify
+from src.db_service.db_service import DbService
+from src.model.shift import Shift
 
 
 class ShiftService:

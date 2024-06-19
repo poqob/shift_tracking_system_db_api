@@ -1,6 +1,6 @@
-from flask import Flask, request, g, jsonify
-from db_service import DbService
-from personel import Personel
+from flask import Flask, request, jsonify
+from src.db_service.db_service import DbService
+from src.model.personel import Personel
 
 
 # run the application on port 5000 and static ip address.

@@ -1,6 +1,6 @@
-from flask import Flask, request, g, jsonify
-from db_service import DbService
-from attandance import Attandance
+from flask import Flask, request, jsonify
+from  src.db_service.db_service import DbService
+from src.model.attandance import Attandance
 
 
 class AttandanceService:

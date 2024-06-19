@@ -1,4 +1,4 @@
-from attandance import Attandance
+from src.model.attandance import Attandance
 import configparser
 from typing import List
 import sqlite3

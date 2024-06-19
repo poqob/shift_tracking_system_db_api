@@ -1,4 +1,4 @@
-from actions import Actions
+from src.model.actions import Actions
 
 
 class QrCode:
